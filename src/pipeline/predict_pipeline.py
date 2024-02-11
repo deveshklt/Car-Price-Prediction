@@ -38,7 +38,7 @@ class CustomData:
 
         self.Model = Model
 
-        self.Conditon = Condition
+        self.Condition = Condition
 
         self.Year = Year
 
@@ -49,7 +49,7 @@ class CustomData:
             custom_data_input_dict = {
                 "Make": [self.Make],
                 "Model": [self.Model],
-                "Condition": [self.Conditon],
+                "Condition": [self.Condition],
                 "Year": [self.Year],
                 "Mileage": [self.Mileage]}
 
