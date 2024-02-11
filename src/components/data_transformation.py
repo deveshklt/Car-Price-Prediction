@@ -16,7 +16,7 @@ from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts',"proprocessor.pkl")
+    preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 
 class DataTransformation:
@@ -29,8 +29,8 @@ class DataTransformation:
         
         '''
         try:
-            numerical_columns = ["Heart Rate", "Diabetes","Family History","Smoking","Obesity","Alcohol Consumption","Exercise Hours Per Week","Previous Heart Problems","Medication Use","Stress Level","Sedentary Hours Per Day","Income","BMI","Triglycerides","Physical Activity Days Per Week","Sleep Hours Per Day","Cholesterol","Age"]
-            categorical_columns = ["Sex","Diet","Country","Hemisphere","Continent"]
+            numerical_columns = ["Year", "Mileage"]
+            categorical_columns = ["Make","Model","Condition"]
 
             num_pipeline= Pipeline(
                 steps=[
@@ -40,15 +40,14 @@ class DataTransformation:
                 ]
             )
 
-            cat_pipeline=Pipeline(
 
-                steps=[
-                ("imputer",SimpleImputer(strategy="most_frequent")),
-                ("one_hot_encoder",OneHotEncoder()),
-                ("scaler",StandardScaler(with_mean=False))
-                ]
-
-            )
+            cat_pipeline = Pipeline(
+    steps=[
+        ("imputer", SimpleImputer(strategy="most_frequent", fill_value="missing")),
+        ("one_hot_encoder", OneHotEncoder()),
+        ("scaler", StandardScaler(with_mean=False))
+    ]
+)
 
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
@@ -80,8 +79,8 @@ class DataTransformation:
 
             preprocessing_obj=self.get_data_transformer_object()
 
-            target_column_name="Heart Attack Risk"
-            numerical_columns = ["Heart Rate", "Diabetes","Family History","Smoking","Obesity","Alcohol Consumption","Exercise Hours Per Week","Previous Heart Problems","Medication Use","Stress Level","Sedentary Hours Per Day","Income","BMI","Triglycerides","Physical Activity Days Per Week","Sleep Hours Per Day","Cholesterol","Age"]
+            target_column_name="Price"
+            numerical_columns = ["Year", "Mileage"]
 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df=train_df[target_column_name]

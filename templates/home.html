@@ -1,0 +1,38 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Car Price Prediction</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Car Price Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Make</label>
+            <input class="form-control" type="text" name="Make" placeholder="Enter Company Name" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Model</label>
+            <input class="form-control" type="text" name="Model" placeholder="Enter Car Model" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Condition</label>
+            <input class="form-control" type="text" name="Condition Of The Car" placeholder="Enter Condition Of Car" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Year</label>
+            <input class="form-control" type="text" name="Year" placeholder="Enter Year" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Mileage</label>
+            <input class="form-control" type="text" name="Mileage" placeholder="Enter Mileage" required />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict Price" required />
+        </div>
+    </form>
+    <h2>
+       THE prediction is {{results}}
+    </h2>
+   <body>
+</html>
